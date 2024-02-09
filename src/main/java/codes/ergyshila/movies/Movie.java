@@ -1,4 +1,5 @@
 package codes.ergyshila.movies;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

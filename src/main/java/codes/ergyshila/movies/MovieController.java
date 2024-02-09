@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/movies")
@@ -20,12 +21,7 @@ public class MovieController {
     }
 
     @GetMapping("/{imdbId}")
-    public ResponseEntity<Movie> getMovieByImdbId(@PathVariable String imdbId) {
-        return service.findMovieByImdbId(imdbId)
-                .map(movie -> new ResponseEntity<Movie>(movie, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<Movie>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId){
+        return new ResponseEntity<Optional<Movie>>(service.findMovieByImdbId(imdbId), HttpStatus.OK);
     }
-
-
-
 }
